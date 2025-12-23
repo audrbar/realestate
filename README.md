@@ -5,23 +5,28 @@ A modern, full-featured real estate web application built with Next.js, enabling
 ## ✨ Features
 
 - **Property Listings**: Browse through available properties with detailed information
-- **Advanced Search**: Filter properties by price, room count, property type, and more
-- **Property Details**: View comprehensive property information including images, pricing, and specifications
+- **Advanced Search**: Filter properties by price, room count, bathrooms, property type, and location
+- **Property Details**: View comprehensive property information including multiple images, pricing, specifications, and descriptions
 - **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
-- **Image Galleries**: Horizontal scrolling image galleries for property photos
-- **Real-time Data**: Integration with external API for up-to-date property listings
+- **Image Galleries**: Interactive horizontal scrolling galleries with navigation arrows for property photos
+- **Real-time Data**: Integration with UAE Real Estate 2 API (RapidAPI) for up-to-date Dubai property listings
 - **Modern UI**: Built with Chakra UI for a clean and professional interface
+- **Performance Optimized**: Next.js Image component with priority loading for LCP optimization
+- **Server-Side Rendering**: Fast page loads with SSR and SSG capabilities
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 12](https://nextjs.org/) - React framework with SSR and SSG
-- **UI Library**: [Chakra UI](https://chakra-ui.com/) - Component library for React
+- **Framework**: [Next.js 13.1.6](https://nextjs.org/) - React framework with SSR and SSG
+- **React**: [React 18.2.0](https://react.dev/) - Latest React with concurrent features
+- **UI Library**: [Chakra UI 1.8.7](https://chakra-ui.com/) - Component library for React
 - **Styling**: CSS Modules & Emotion
-- **HTTP Client**: [Axios](https://axios-http.com/) - Promise-based HTTP client
-- **Animations**: [Framer Motion](https://www.framer.com/motion/) - Production-ready animation library
-- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
-- **Image Optimization**: [Sharp](https://sharp.pixelplumbing.com/) - High-performance image processing
-- **Progress Bar**: NProgress - Loading indicator
+- **HTTP Client**: [Axios 0.26.1](https://axios-http.com/) - Promise-based HTTP client
+- **Animations**: [Framer Motion 6.2.8](https://www.framer.com/motion/) - Production-ready animation library
+- **Icons**: [React Icons 4.3.1](https://react-icons.github.io/react-icons/)
+- **Image Optimization**: [Sharp 0.30.3](https://sharp.pixelplumbing.com/) - High-performance image processing
+- **Progress Bar**: NProgress 0.2.0 - Loading indicator
+- **Horizontal Scrolling**: react-horizontal-scrolling-menu 2.7.1 - Image gallery scroller
+- **Number Formatting**: millify 4.0.0 - Human-readable number formatting
 
 ## 📁 Project Structure
 
@@ -53,8 +58,9 @@ realestate/
 
 ### Prerequisites
 
-- Node.js 14.x or higher
+- Node.js 14.x or higher (16.x or 18.x recommended)
 - npm or yarn package manager
+- RapidAPI account with UAE Real Estate 2 API access
 
 ### Installation
 
@@ -72,10 +78,12 @@ realestate/
    ```
 
 3. **Set up environment variables**
-   Create a `.env.local` file in the root directory and add necessary API keys:
+   Create a `.env.local` file in the root directory and add your RapidAPI key:
    ```env
-   NEXT_PUBLIC_API_KEY=your_api_key_here
+   NEXT_PUBLIC_RAPIDAPI_KEY=your_rapidapi_key_here
    ```
+
+   Get your API key from [RapidAPI UAE Real Estate 2](https://rapidapi.com/apidojo/api/uae-real-estate2/)
 
 4. **Run the development server**
    ```bash
@@ -97,9 +105,21 @@ realestate/
 ## 🔧 Configuration
 
 The application uses Next.js configuration in `next.config.js` for:
-- Image optimization settings
-- External API domains
+- Image optimization settings (Sharp image processor)
+- External image domains (bayut-production.s3.eu-central-1.amazonaws.com)
+- React Strict Mode enabled
+- SWC minification for faster builds
 - Build configurations
+
+### API Configuration
+
+The app uses the UAE Real Estate 2 API from RapidAPI:
+- **Base URL**: `uae-real-estate2.p.rapidapi.com`
+- **Main Endpoint**: POST `/properties_search`
+- **Detail Endpoint**: GET `/property/{id}`
+- **Location**: Dubai (location_ids: [2])
+
+API calls are handled through `utils/fetchApi.js` with support for both GET and POST requests.
 
 ## 🌐 Deployment
 
